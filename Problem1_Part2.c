@@ -18,6 +18,8 @@ bool isPrime(int n){
 int main(int argc, char** argv) {
     MPI_Init(&argc, &argv);
     
+    double start = MPI_Wtime();
+    
     int rank , numOfProcesses ;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &numOfProcesses);
@@ -50,6 +52,9 @@ int main(int argc, char** argv) {
           }      
       }
       printf("Total No Of Primes = %d.\n" , result);  
+      
+      double end = MPI_Wtime();
+      printf("Total time: %f seconds\n", end - start);
     }
     else {
        int cnt = 0 ;
@@ -66,3 +71,4 @@ int main(int argc, char** argv) {
     MPI_Finalize();
     return 0;
 }
+
